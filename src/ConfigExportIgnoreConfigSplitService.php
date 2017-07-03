@@ -15,10 +15,18 @@ use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * Overrides exports service and removes specified configuration form export.
+ *
+ * @package Drupal\config_export_ignore
+ */
 class ConfigExportIgnoreConfigSplitService extends ConfigSplitCliService {
 
   const FORCE_EXCLUSION_PREFIX = '~';
 
+  /**
+   * ConfigExportIgnoreConfigSplitService constructor.
+   */
   public function __construct(ConfigFilterManagerInterface $config_filter_manager, ConfigFilterStorageFactory $storageFactory, ConfigManagerInterface $config_manager, StorageInterface $active_storage, StorageInterface $sync_storage, EventDispatcherInterface $event_dispatcher,LockBackendInterface $lock, TypedConfigManagerInterface $config_typed, ModuleHandlerInterface $module_handler, ModuleInstallerInterface $module_installer, ThemeHandlerInterface $theme_handler, TranslationInterface $string_translation) {
     parent::__construct($config_filter_manager, $storageFactory, $config_manager, $active_storage, $sync_storage, $event_dispatcher, $lock, $config_typed, $module_handler, $module_installer, $theme_handler, $string_translation);
   }
@@ -97,4 +105,5 @@ class ConfigExportIgnoreConfigSplitService extends ConfigSplitCliService {
 
     return FALSE;
   }
+
 }
